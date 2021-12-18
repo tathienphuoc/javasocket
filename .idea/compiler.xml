@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="TimeTable" />
         <module name="MultiThread" />
+        <module name="javasocket" />
       </profile>
     </annotationProcessing>
   </component>

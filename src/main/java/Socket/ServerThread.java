@@ -30,7 +30,7 @@ class ServerThread extends Thread {
     }
 
     public void send(String message, SecretKey secretKey) throws IOException, EncryptionException {
-        io.send(Crypto.encrpy(Crypto.Cipher_AES, secretKey, message));
+        io.send(Crypto.encrypt(Crypto.Cipher_AES, secretKey, message));
     }
 
     public void send(String message) throws IOException {
@@ -38,7 +38,7 @@ class ServerThread extends Thread {
     }
 
     public String receive(SecretKey secretKey) throws IOException, DecryptionException {
-        return Crypto.decrpy(Crypto.Cipher_AES, secretKey, io.receive());
+        return Crypto.decrypt(Crypto.Cipher_AES, secretKey, io.receive());
     }
 
     public String receive() throws IOException {
@@ -66,7 +66,7 @@ class ServerThread extends Thread {
             //Receive secret key
             String secretKeyJson = receive();
             String secretKeyString = JSON.getString(secretKeyJson, "Secret key");
-            secretKey = HybridSystem.decrpySecretKey(secretKeyString, rsa.getPrivateKey());
+            secretKey = HybridSystem.decryptSecretKey(secretKeyString, rsa.getPrivateKey());
         } catch (Exception e) {
             message = "Exchanging session key failed";
         }

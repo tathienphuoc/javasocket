@@ -37,11 +37,11 @@ public class Client {
     }
 
     public void send(String message, SecretKey secretKey) throws IOException, EncryptionException {
-        io.send(Crypto.encrpy(Crypto.Cipher_AES, secretKey, message));
+        io.send(Crypto.encrypt(Crypto.Cipher_AES, secretKey, message));
     }
 
     public String receive(SecretKey secretKey) throws IOException, DecryptionException {
-        return Crypto.decrpy(Crypto.Cipher_AES, secretKey, io.receive());
+        return Crypto.decrypt(Crypto.Cipher_AES, secretKey, io.receive());
     }
 
     public void close() throws IOException {
@@ -65,7 +65,7 @@ public class Client {
             //Send secret key
             aes = new AES();
             secretKey = aes.getSecretKey();
-            String secretKeyJson = JSON.toJSON("Secret key", HybridSystem.encrpySecretKey(aes.getSecretKey(), publicKey));
+            String secretKeyJson = JSON.toJSON("Secret key", HybridSystem.encryptSecretKey(aes.getSecretKey(), publicKey));
             send(secretKeyJson);
         } catch (Exception e) {
             e.printStackTrace();
