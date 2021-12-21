@@ -78,7 +78,7 @@ public class Service {
     }
 
     public static List<TimeTable> filter(List<TimeTable> timeTables, JSONObject json) {
-        int numSuject = json.has("numSuject") ? json.getInt("numSuject") : timeTables.get(0).getSubjects().size();
+        int numSuject = json.has("numSubject") ? json.getInt("numSubject") : timeTables.get(0).getSubjects().size();
 
         boolean morning = json.has("morning") ? json.getBoolean("morning") : false;
 
@@ -86,7 +86,7 @@ public class Service {
 
         int numDaysOn = json.has("numDaysOn") ? json.getInt("numDaysOn") : 0;
 
-        String daysOn = json.has("daysOn") ? json.getString("daysOn").replaceAll("\\s+", "") : "";// check truyền daysOn kh đúng format
+        String daysOn = json.has("daysOn") ? json.getString("daysOn").replaceAll("\\s+", "") : "";
 
         Integer limit = json.has("limit") ? json.getInt("limit") : 0;
 
