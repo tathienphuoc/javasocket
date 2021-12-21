@@ -11,8 +11,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Service {
+//    public static final String BASE_URL="http://103.6.169.208:3000";
+    public static final String BASE_URL="http://localhost:3000";
     public static List<Subject> callAPI(String subjects) throws Exception {
-        String url = "http://103.6.169.208:3000/api/subjects?s=" + subjects;
+        String url = BASE_URL+"/api/subjects?s=" + subjects;
         String json = null;
         try {
             json = Jsoup.connect(url).timeout(Integer.MAX_VALUE).ignoreContentType(true).execute().body();
